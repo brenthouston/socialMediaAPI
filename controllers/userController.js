@@ -23,9 +23,12 @@ module.exports = {
     },
     // create a new post
     createUser(req, res) {
-      User.create(req.body)
+      User.create({ 
+            username: req.body.username,
+            email:req.body.email})
         .then((user) => res.json(user))
         .catch((err) => res.status(500).json(err));
     },
   };
+  
   
