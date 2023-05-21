@@ -1,6 +1,50 @@
 const { Schema, model, now } = require('mongoose');
+const { ObjectId } = require('bson');
 
-// Schema to create Thought model
+
+//REACTION SCHEMA
+
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: new ObjectId
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      match: [/^\w+{1,280}$/]
+    },
+    username: {
+        type: String,
+        required: true,
+      },
+    createdAt: {
+        type: Date,
+        default: Date.now
+        
+      },
+
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
+
+// Create a virtual property 'timeStamp' that is human friendly
+reactionSchema
+  .virtual('timeStamp')
+  // Getter
+  .get(function () {
+    return this.createdAt.toDateString();
+  });
+
+
+//THOUGHT SCHEMA
+
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -9,7 +53,8 @@ const thoughtSchema = new Schema(
       match: [/^\w+{1,280}$/]
     },
     createdAt: {
-      type: Date, default: Date.now,
+      type: Date,
+      default: Date.now,
     },
     username: {
         type: String,
