@@ -13,7 +13,7 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      match: [/^\w+{1,280}$/]
+      match: [/^\w{1,280}$/]
     },
     username: {
         type: String,
@@ -34,7 +34,7 @@ const reactionSchema = new Schema(
   }
 );
 
-// Create a virtual property 'timeStamp' that is human friendly
+// Create a virtual property 'timeStamp' that is readible
 reactionSchema
   .virtual('timeStamp')
   // Getter
@@ -50,7 +50,7 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      match: [/^\w+{1,280}$/]
+      match: [/^\w{1,280}$/]
     },
     createdAt: {
       type: Date,
