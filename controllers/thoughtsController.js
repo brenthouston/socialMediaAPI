@@ -1,14 +1,12 @@
 const { Thought }= require('../models');
 
 module.exports = {
-    getUser(req, res) {
+    getThoughts(req, res) {
       Thought.find()
         // .populate({ path: 'tags', select: '-__v' })
         .then((thoughts) => res.json(thoughts))
-        .catch((err) => {
-          console.error({ message: err });
-          return res.status(500).json(err);
-        });
+        .catch((err) => res.status(500).json(err));
+        ;
     },
     getSingleThought(req, res) {
       Thought.findOne({ _id: req.params.postId })
@@ -20,14 +18,19 @@ module.exports = {
         )
         .catch((err) => res.status(500).json(err));
     },
-    // create a new post
+    // create a new thought
     createThought(req, res) {
       Thought.create({ 
             thoughtText: req.body.thoughtText,
-            })
-        .then((thought) => res.json(thought))
-        .catch((err) => res.status(500).json(err));
-    },
+            username: req.body.username,
+          })
+          
+          .then((thought) => res.json(thought))
+          .catch((err) => res.status(500).json(err));
+         
+       
+    }
+    
   };
   
   

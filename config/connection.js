@@ -1,8 +1,10 @@
-const { connect, connection } = require('mongoose');
+const mongoose = require('mongoose');
 
-connect('mongodb://localhost/socialMediaDB', {
+mongoose.connect('mongodb://localhost/socialMediaDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+}).then(() =>{
+  console.log("connected to DB");
+})
 
-module.exports = connection;
+module.exports = mongoose.connection;

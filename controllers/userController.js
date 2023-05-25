@@ -21,7 +21,7 @@ module.exports = {
         )
         .catch((err) => res.status(500).json(err));
     },
-    // create a new post
+    // create a new user
     createUser(req, res) {
       User.create({ 
             username: req.body.username,

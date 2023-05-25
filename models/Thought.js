@@ -50,7 +50,7 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      match: [/^\w{1,280}$/]
+      match: [/^[\w\s]{1,280}$/]
     },
     createdAt: {
       type: Date,
