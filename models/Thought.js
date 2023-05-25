@@ -1,4 +1,4 @@
-const { Schema, model, now } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const { ObjectId } = require('bson');
 
 
@@ -50,7 +50,7 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      match: [/^[\w\s]{1,280}$/]
+      match: [/^.{1,280}$/, 'Please make your comment between 1 and 280 characters']
     },
     createdAt: {
       type: Date,
@@ -72,7 +72,7 @@ const thoughtSchema = new Schema(
 );
 
 // Create a virtual property `reactionCount` that gets the amount of reaction per user
-thoughtSchema
+reactionSchema
   .virtual('reactionCount')
   // Getter
   .get(function () {

@@ -22,7 +22,7 @@ module.exports = {
     createThought(req, res) {
       Thought.create({ 
             thoughtText: req.body.thoughtText,
-            username: req.body.username,
+            username:req.body.username
           })
           
           .then((thought) => res.json(thought))
