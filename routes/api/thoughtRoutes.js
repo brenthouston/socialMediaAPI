@@ -5,3 +5,5 @@ const {
 } = require('../../controllers/thoughtsController')
 
 router.route('/api/thoughts').post(createThought)
+
+module.exports = router;
