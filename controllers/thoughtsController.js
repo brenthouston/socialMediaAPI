@@ -27,12 +27,14 @@ module.exports = {
              .then((thought) => {
               return User.findOneAndUpdate(
                 { _id: req.body.userId },
-                { $addToSet: { thought: thought._id } },
+                { $addToSet: { thoughts: thought._id } },
                 { new: true }
-              );
+              )
+              .populate('thoughts')
+              .exec()
             })
           
-          .then((thought) => res.json(thought))
+          .then((thought) => res.json(thought).populate(User))
 
           .catch((err) => res.status(500).json(err));
     },
