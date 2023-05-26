@@ -13,7 +13,7 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      match: [/^\w{1,280}$/]
+      match: [/^.{1,280}$/]
     },
     username: {
         type: String,
@@ -79,7 +79,7 @@ reactionSchema
     return this.reactions.length;
   });
 
-// Initialize our Post model
+// Initialize our thought model
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
